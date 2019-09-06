@@ -94,13 +94,13 @@ call :SelectNodeVersion
 :: 2. Install npm packages
 IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   pushd "%DEPLOYMENT_SOURCE%"
-  call :ExecuteCmd !NPM_CMD! install --production
+  call :ExecuteCmd !NPM_CMD! install
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
 
 :: 3. Angular Prod Build //If you had generated this yourself then please add this step manually!!)
-IF EXIST "%DEPLOYMENT_SOURCE%\angular.json" (
+IF EXIST "%DEPLOYMENT_SOURCE%/angular.json" (
   echo Building App in %DEPLOYMENT_SOURCE%…
   pushd "%DEPLOYMENT_SOURCE%"
   call :ExecuteCmd !NPM_CMD! run build-prod
