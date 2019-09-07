@@ -89,7 +89,8 @@ selectNodeVersion () {
 # ==================================================================================================================
 
 #1 select node version
-selectNodeVersion
+#selectNodeVersion
+NPM_CMD="node /opt/nodejs/10.14.2/bin/npm"
 
 #2 npm install
 if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
