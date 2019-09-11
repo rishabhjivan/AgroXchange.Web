@@ -1,0 +1,33 @@
+.sprite {
+  background: url(assets/images/sprite.png) no-repeat;
+  &.sprite-check, &.sprite-success {
+    width: 50px;
+    height: 51px;
+    background-position: -364px -148px;
+  }
+  &.sprite-qrcode {
+    width: 18px;
+    height: 18px;
+    background-position: -364px -226px;
+  }
+  &.sprite-link {
+    width: 22px;
+    height: 22px;
+    background-position: -383px -226px;
+  }
+  &.sprite-copy {
+    width: 20px;
+    height: 23px;
+    background-position: -406px -226px;
+  }
+  &.sprite-cross, &.sprite-error {
+    width: 50px;
+    height: 51px;
+    background-position: -448px -226px;
+  }
+  &.sprite-warning {
+    width: 50px;
+    height: 48px;
+    background-position: -499px -226px;
+  }
+}

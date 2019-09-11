@@ -1,0 +1,15 @@
+<ng-template #alertsModal let-c="close" let-d="dismiss">
+  <div *ngIf="alertMessage" class="modal-header">
+    <h4 class="modal-title text-center"><div class="sprite sprite-{{alertMessage.type}} m-auto"></div>{{typeLabels[alertMessage.type]}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d()">
+      <span aria-hidden="true"><i class="fa fa-times"></i></span>
+    </button>
+  </div>
+  <div *ngIf="alertMessage" class="modal-body text-center">
+    <span [innerHtml]="alertMessage.msg | safeHtml"></span>
+  </div>
+  <div *ngIf="alertMessage" class="modal-footer text-center">
+    <button *ngIf="!alertMessage.actions || !alertMessage.actions.length" type="button" class="btn btn-primary" (click)="c()">Close</button>
+    <button *ngFor="let action of alertMessage.actions" type="button" class="btn btn-primary" (click)="action.onclick($event)">{{action.label}}</button>
+  </div>
+</ng-template>

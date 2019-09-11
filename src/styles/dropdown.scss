@@ -1,0 +1,33 @@
+.dropdown {
+  > button.dropdown-toggle {
+    color: $neutral-shade-1;
+    &:not(.disabled):focus, &:not(.disabled).active {
+      border-color: $neutral-shade-5;
+      background-color: $white;
+    }
+  }
+  .dropdown-menu {
+    border-color: $neutral-shade-5;
+    box-shadow: 0 0 .3rem 0 $neutral-shade-5;
+    border-radius: 0;
+    padding: 0;
+    position: absolute;
+    .dropdown-item {
+      font-size: 1.4rem;
+      color: $neutral-shade-1;
+      padding: 1rem 1.5rem;
+      &:first-child {
+        border-top: 0px solid transparent;
+      }
+      &:last-child {
+        border-bottom: 0px solid transparent;
+      }
+      &:not(:last-child) {
+        border-bottom: 1px solid $neutral-shade-3;
+      }
+      &:hover, &:active {
+        background-color: $neutral-shade-5;
+      }
+    }
+  }
+}

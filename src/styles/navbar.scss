@@ -1,0 +1,93 @@
+header {
+  nav {
+    &.navbar {
+      background-color: inherit;
+      padding: 1rem 2rem;
+      @extend .clearfix;
+      li.nav-item {
+        a.nav-link {
+          padding: .5rem 0 .2rem 0;
+        }
+        a, a.nav-link {
+          color: $white;
+          font-size: 1.6rem;
+          &:hover {
+            color: $white;
+          }
+        }
+        &.active {
+          a, a.nav-link {
+            color: $white;
+          }
+        }
+      }
+      &.navbar-profile {
+        ul {
+          width: 100%;
+          li.nav-item {
+            width: 100%;
+            text-align: right;
+            .nav-link, .btn-link {
+              color: $white;
+              font-size: 1.6rem;
+              font-family: $primary-font;
+              /*&.dropdown-toggle {
+                position: relative;
+                &::after {
+                  border: none;
+                  position: absolute;
+                  right: 2.5rem;
+                  top: .9rem;
+                }
+                &:not(.disabled):focus, &:not(.disabled).active {
+                  border-color: $brand-purple-light3;
+                  background-color: $white;
+                }
+              }*/
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.wrapper-menu {
+  nav {
+    font-family: $primary-font;
+    &.navbar {
+      padding: 1rem 0;
+      .navbar-brand {
+        font-family: $primary-font-bold;
+        color: $white;
+        margin: 1rem auto auto auto;
+        font-size: 1.8rem;
+      }
+      .navbar-nav {
+        width: 100%;
+        opacity: .9;
+        li.nav-item {
+          background-color: rgba(255,255,255,0.07);
+          padding: .7rem 0 .7rem 1.5rem;
+          border-left: .5rem solid rgba(255,255,255,0.15);
+          &:not(:last-child) {
+            margin-bottom: .1rem;
+          }
+          .nav-link {
+            color: $white;
+            font-size: 1.8rem;
+            i {
+              margin-right: 1rem;
+            }
+          }
+          &.active, &:hover {
+            background-color: rgba(0,0,0,0.20);
+            @extend .left-gradient-border;
+            .nav-link {
+              color: $primary-colour-3;
+            }
+          }
+        }
+      }
+    }
+  }
+}

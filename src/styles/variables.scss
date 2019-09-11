@@ -1,0 +1,61 @@
+$fa-font-path: "assets/fonts/FontAwesome.5.0.6/webfonts";
+$primary-font: 'Verdana';
+$primary-font-light: 'Verdana';
+$primary-font-bold: 'Verdana';
+$primary-font-black: 'Verdana';
+$primary-font-medium: 'Arial';
+$primary-font-semibold: 'Arial';
+$fallback-font: sans-serif;
+
+//Primary Colours
+$primary-colour-1: #b2ce5f;
+$primary-colour-2: #71b03b;
+$primary-colour-3: #3d7536;
+$primary-colour-4: #2c3824;
+
+//Gradient Colours
+$gradient-1: linear-gradient(to right top, #71b03b , #b2ce5f);
+$gradient-2: linear-gradient(to right top, #3d7536 , #71b03b);
+$gradient-3: linear-gradient(to right top, #006ab8 , #22c9ef);
+$gradient-4: linear-gradient(to right top, #009245 , #4aba4c);
+$gradient-5: linear-gradient(to right top, #495056 , #22c9ef);
+
+$gradient-colour-1: #006ab8;
+$gradient-colour-2: #22c9ef;
+
+//Secondary Colours
+$secondary-colour-1: #4aba4c;
+$secondary-colour-2: #fd6a5a;
+$secondary-colour-3: #ffa604;
+
+//Neutral Shades
+$black: #000;
+$neutral-shade-1: #495056;
+$neutral-shade-2: #8891a1;
+$neutral-shade-3: #8C9299;
+$neutral-shade-4: #9ca3ad;
+$neutral-shade-5: #d2d2d2;
+$neutral-shade-6: #e6e6e6;
+$neutral-shade-7: #f3f3f3;
+$neutral-shade-8: #f4f7fa;
+$neutral-shade-9: #ccc;
+$neutral-shade-10: #f7f7fa;
+$white : #fff;
+
+.left-gradient-border {
+  border-width: 5px;
+  border-style: solid;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  -webkit-border-image: 
+    -webkit-gradient(linear, 0 100%, 0 0, from(#2b497b), to(#006ab8)) 1 100%;
+  -webkit-border-image: 
+    -webkit-linear-gradient(bottom, #2b497b, #006ab8) 1 100%;
+  -moz-border-image:
+    -moz-linear-gradient(bottom, #2b497b, #006ab8) 1 100%;  
+  -o-border-image:
+    -o-linear-gradient(bottom, #2b497b, #006ab8) 1 100%;
+  border-image:
+    linear-gradient(to top, #2b497b, #006ab8) 1 100%;
+}

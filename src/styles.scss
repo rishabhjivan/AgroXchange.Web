@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/scss/bootstrap.scss";
+@import 'styles/variables.scss';
+@import "assets/fonts/FontAwesome.5.0.6/scss/fontawesome.scss";
+@import "assets/fonts/FontAwesome.5.0.6/scss/fa-solid.scss";
+@import "assets/fonts/FontAwesome.5.0.6/scss/fa-regular.scss";
+@import 'styles/symbols.scss';
+@import 'styles/spacings.scss';
+@import 'styles/elements.scss';
+@import 'styles/base.scss';
+@import 'styles/layout.scss';
+@import 'styles/navbar.scss';
+@import 'styles/forms.scss';
+@import 'styles/alerts.scss';
+@import 'styles/buttons.scss';
+@import 'styles/dropdown.scss';
+@import 'styles/panels.scss';
+@import 'styles/tables.scss';
+@import 'styles/modal.scss';
+@import 'styles/lists.scss';
+@import 'styles/datepicker.scss';
+@import 'styles/sprite.scss';
+@import 'styles/spinners.scss';

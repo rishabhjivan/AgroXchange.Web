@@ -1,0 +1,13 @@
+html {
+  font-size: 10px;
+}
+body {
+  font-family: $primary-font, $fallback-font;
+  color: $neutral-shade-2;
+  font-size: 1.2rem;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

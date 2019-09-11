@@ -1,0 +1,85 @@
+.date-picker-group {
+  position: relative;
+  input[type=text][readonly] {
+    background: $white;
+  }
+  &.date-picker-use-label {
+    input[type=text], input[type=text][readonly] {
+      color: transparent;
+      background: transparent;
+    }
+    label.date-alt-label {
+      position: absolute;
+      display: block;
+      color: $neutral-shade-1;
+      font-size: 1.4rem;
+      z-index: -1;
+      padding: .2rem .8rem;
+      font-family: $primary-font-bold;
+      line-height: 1.7;
+    }
+  }
+  button.btn.btn-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: .6rem 1rem;
+    font-size: 2.4rem;
+    background: none;
+    color: $primary-colour-3;
+    &:hover, &:active, &:visited, &.active {
+      background: none;
+    }
+    i.far {
+      margin: 0;
+    }
+  }
+  .dropdown-menu {
+    font-size: 1.6rem;
+    border-radius: 0;
+    .ngb-dp-header {
+      background: $gradient-3 !important;
+      padding: 1rem;
+      border-radius: 0;
+      select {
+        font-size: 1.2rem;
+      }
+      .ngb-dp-arrow {
+        .btn {
+          &.btn-link {
+            color: $white;
+          }
+        }
+      }
+    }
+    .ngb-dp-weekdays {
+      border-bottom: none;
+      background-color: $white !important;
+      margin-top: 1rem;
+      .ngb-dp-weekday {
+        font-style: normal !important;
+        color: $black !important;
+        font-weight: 700 !important;
+      }
+    }
+    .ngb-dp-day, .ngb-dp-weekday, .ngb-dp-week-number {
+      width: 3.2rem;
+      height: 3.2rem;
+      div.btn-light {
+        width: 3.2rem;
+        height: 3.2rem;
+        line-height: 3.2rem;
+        border-radius: 50%;
+      }
+    }
+  }
+  &.date-picker-sm {
+    button.btn.btn-icon {
+      padding: .4rem .5rem .5rem .3rem;
+      line-height: .8;
+      font-size: 1.6rem;
+      margin-top: .1rem;
+      margin-right: .1rem;
+    }
+  }
+}

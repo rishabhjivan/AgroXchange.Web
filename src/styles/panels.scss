@@ -1,0 +1,11 @@
+.panel {
+  &.panel-auth {
+    border-radius: 1rem;
+    background-color: $white;
+    padding: 3rem 5rem;
+    max-width: 45rem;
+    .login-logo {
+      margin-bottom: 2rem;
+    }
+  }
+}
