@@ -1,5 +1,5 @@
 .app-container {
-  background-color: $primary-colour-1;
+  background-color: $white;
   min-height: 100vh;
 }
 .app-bg-container {
@@ -8,19 +8,50 @@
   background-position: center bottom;
   min-height: 100vh;
 }
-.wrapper-menu {
-  float: left;
-  width: 200px;
-  background-color: $primary-colour-1;
-}
-.wrapper-content {
-  position: relative;
-  margin-left: 200px;
-  background-color: $neutral-shade-7;
-  min-height: 100vh;
-}
 header {
-  background: $gradient-1;
+  height: 6rem;
+  background: $white;
+}
+.flex-container {
+  height: 100%;   
+  overflow: hidden;  /*makes the body non-scrollable (we will add scrolling to the sidebar and main content containers)*/
+  margin: 0px;  /*removes default style*/
+  display: flex;  /*enables flex content for its children*/
+  box-sizing: border-box;
+  margin-top: -6rem;
+  padding-top: 6rem;
+  .flex-col {
+    display: flex;
+    flex-direction: column;
+  }
+  .flex-column {
+    height: 100%;  /*allows both columns to span the full height of the browser window*/
+    width: 100%;
+    display: flex;
+    flex-direction: column;  /*places the left and right headers above the bottom content*/
+    &.flex-left, &.flex-right {
+      flex-shrink: 0;  /*makes sure that content is not cut off in a smaller browser window*/
+      width: 20rem;
+    }
+    .flex-inner {
+      flex-grow: 1;  /*ensures that the container will take up the full height of the parent container*/
+      overflow-y: auto;  /*adds scroll to this container*/
+      overflow-x: hidden;
+    }
+  }
+}
+.fill-height {
+  min-height: 100vh;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.container-offset-100 {
+  margin-top: -10rem;
+  padding-top: 10rem;
+}
+.container-offset-60 {
+  margin-top: -6rem;
+  padding-top: 6rem;
 }
 section {
   padding: 1rem 2rem;
@@ -37,13 +68,9 @@ section {
 section + section {
   margin-top: 1rem;
 }
-footer, .footer-padding {
-  width: 100%;
-  height: 50px;
-}
 footer {
-  position: absolute;
-  bottom: 0;
+  width: 100%;
+  height: 4rem;
   background-color: $neutral-shade-5;
   color: $neutral-shade-3;
   text-align: center;

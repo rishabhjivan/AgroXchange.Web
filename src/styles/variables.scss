@@ -1,4 +1,4 @@
-$fa-font-path: "assets/fonts/FontAwesome.5.0.6/webfonts";
+$fa-font-path: "assets/fonts/FontAwesome.5.10.2/webfonts";
 $primary-font: 'Verdana';
 $primary-font-light: 'Verdana';
 $primary-font-bold: 'Verdana';
@@ -49,13 +49,13 @@ $white : #fff;
   border-top: none;
   border-bottom: none;
   -webkit-border-image: 
-    -webkit-gradient(linear, 0 100%, 0 0, from(#2b497b), to(#006ab8)) 1 100%;
+    -webkit-gradient(linear, 0 100%, 0 0, from(#fff), to(#f3f3f3)) 1 100%;
   -webkit-border-image: 
-    -webkit-linear-gradient(bottom, #2b497b, #006ab8) 1 100%;
+    -webkit-linear-gradient(bottom, #fff, #f3f3f3) 1 100%;
   -moz-border-image:
-    -moz-linear-gradient(bottom, #2b497b, #006ab8) 1 100%;  
+    -moz-linear-gradient(bottom, #fff, #f3f3f3) 1 100%;  
   -o-border-image:
-    -o-linear-gradient(bottom, #2b497b, #006ab8) 1 100%;
+    -o-linear-gradient(bottom, #fff, #f3f3f3) 1 100%;
   border-image:
-    linear-gradient(to top, #2b497b, #006ab8) 1 100%;
+    linear-gradient(to top, #fff, #f3f3f3) 1 100%;
 }

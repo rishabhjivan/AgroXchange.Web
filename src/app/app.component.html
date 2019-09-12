@@ -10,9 +10,7 @@
             <div class="login-form">
               <router-outlet></router-outlet>
             </div>
-            <!--<div class="login-footer">
-              <small>Copyright &copy; {{ today | date : 'yyyy' }} AgroXchange. All Rights Reserved.</small>
-            </div>-->
+            <!--<app-footer></app-footer>-->
           </div>
         </div>
       </div>
@@ -21,14 +19,23 @@
 </ng-template>
 <ng-template #secureBlock>
   <div class="app-container">
-    <div class="wrapper-menu">
-      <app-menu></app-menu>
-    </div>
-    <div class="wrapper-content">
-      <app-header></app-header>
-      <router-outlet></router-outlet>
-      <div class="footer-padding"></div>
-      <app-footer></app-footer>
+    <app-header></app-header>
+    <div class="flex-container">
+      <div class="flex-column flex-left">
+        <div class="flex-inner">
+          <div class="fill-height container-offset-60 bg-black">
+            <app-menu></app-menu>
+          </div>
+        </div>
+      </div>
+      <div class="flex-column">
+        <div class="flex-inner">
+          <div class="fill-height container-offset-100">
+            <router-outlet></router-outlet>
+          </div>
+          <app-footer></app-footer>
+        </div>
+      </div>
     </div>
   </div>
 </ng-template>

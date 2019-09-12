@@ -13,6 +13,7 @@ import { AlertsModule } from './modules/alerts/alerts.module';
 import { alertsReducer } from './modules/alerts/reducer/alerts';
 import { AuthInterceptor } from './modules/auth/services/auth.interceptor';
 import { RequestInterceptor } from './modules/auth/services/request.interceptor';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { RequestInterceptor } from './modules/auth/services/request.interceptor'
     StoreModule.forRoot(alertsReducer),
     SharedModule,
     AuthModule,
-    AlertsModule
+    AlertsModule,
+    DashboardModule
   ],
   providers: [
     {

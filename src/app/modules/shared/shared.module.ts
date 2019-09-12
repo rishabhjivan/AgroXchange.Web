@@ -8,6 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { SafePipe } from './pipes/safe/safe.pipe';
 import { SafeHtmlPipe } from './pipes/safe-html/safe-html.pipe';
+import { AuthModule } from '../auth/auth.module';
 
 
 
@@ -16,7 +17,9 @@ import { SafeHtmlPipe } from './pipes/safe-html/safe-html.pipe';
   imports: [
     CommonModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    RouterModule,
+    AuthModule
   ],
   exports: [HeaderComponent, FooterComponent, MenuComponent, SafePipe, SafeHtmlPipe],
   providers: []
