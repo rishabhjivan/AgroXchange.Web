@@ -4,7 +4,7 @@
 button, .btn {
   border-radius: 2rem;
   display: inline-block;
-  padding: .8rem 3.5rem;
+  padding: 1rem 3.5rem;
   font-size: 1.4rem;
   border: none;
   font-family: $primary-font-medium;
@@ -32,11 +32,43 @@ button, .btn {
   &.btn-primary {
     background: $primary-colour-1;
     color: $white;
-    &:hover, &:focus {
+    &:hover, &:focus, &:active, &:not(.disabled).active {
       background: $primary-colour-2;
     }
-    &:active, &:not(.disabled).active {
-      background: $primary-colour-2;
+  }
+  &.btn-register-2 {
+    background: $neutral-shade-5;
+    color: $neutral-shade-1;
+    &:hover, &:focus, &:active, &:not(.disabled).active {
+      background: $neutral-shade-4;
+    }
+  }
+  &.btn-register-3 {
+    background: $neutral-shade-3;
+    color: $white;
+    &:hover, &:focus, &:active, &:not(.disabled).active {
+      background: $neutral-shade-2;
+    }
+  }
+  &.btn-register-4 {
+    background: $secondary-colour-4;
+    color: $neutral-shade-1;
+    &:hover, &:focus, &:active, &:not(.disabled).active {
+      background: $secondary-colour-4-dark;
+    }
+  }
+  &.btn-register-5 {
+    background: $primary-colour-3;
+    color: $white;
+    &:hover, &:focus, &:active, &:not(.disabled).active {
+      background: $primary-colour-4;
+    }
+  }
+  &.btn-register-6 {
+    background: $secondary-colour-3;
+    color: $white;
+    &:hover, &:focus, &:active, &:not(.disabled).active {
+      background: $secondary-colour-3-dark;
     }
   }
   &.btn-secondary {
@@ -68,6 +100,11 @@ button, .btn {
     font-size: 1.6rem;
     border-radius: 3px;
     padding: 0 1.5rem;
+  }
+  &.btn-icon-left {
+    position: relative;
+    text-align: left;
+    padding-left: 6rem;
   }
   &.btn-icon {
     text-decoration: none;
@@ -108,19 +145,22 @@ button, .btn {
   &:disabled {
     opacity: 0.5;
     background: $neutral-shade-2;
-    color: $neutral-shade-9;
+    color: $neutral-shade-5;
     &:hover, &:focus, &:active, &:visited {
       opacity: 0.5;
       background: $neutral-shade-2;
-      color: $neutral-shade-9;
+      color: $neutral-shade-5;
       box-shadow: none;
       -webkit-box-shadow: none;
       outline: none;
     }
   }
 }
-button + button {
+button:not(.btn-fill) + button:not(.btn-fill) {
   margin-left: 20px;
+}
+button.btn-fill + button.btn-fill {
+  margin-top: 20px;
 }
 button.pull-right + button.pull-right {
   margin-left: 0;

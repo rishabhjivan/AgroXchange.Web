@@ -31,3 +31,42 @@
     background-position: -499px -226px;
   }
 }
+.sprite-register {
+  background: url(assets/images/register-icons.jpg) no-repeat;
+  background-color: $white;
+  display: block;
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  border-radius: 2rem;
+  &.farmer {
+    width: 42px;
+    height: 42px;
+    background-position: 0px 0px;
+  }
+  &.aggregator {
+    width: 42px;
+    height: 42px;
+    background-position: 0px -42px;
+  }
+  &.wholesaler {
+    width: 42px;
+    height: 42px;
+    background-position: 0px -84px;
+  }
+  &.processor {
+    width: 42px;
+    height: 42px;
+    background-position: 0px -126px;
+  }
+  &.offtaker {
+    width: 42px;
+    height: 42px;
+    background-position: 0px -168px;
+  }
+  &.supplier {
+    width: 42px;
+    height: 42px;
+    background-position: 0px -210px;
+  }
+}

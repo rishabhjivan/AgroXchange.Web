@@ -150,14 +150,14 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: $neutral-shade-9 !important;
+  color: $neutral-shade-5 !important;
   opacity: 1 !important; /* Firefox */
 }
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: $neutral-shade-9 !important;
+  color: $neutral-shade-5 !important;
 }
 ::-ms-input-placeholder { /* Microsoft Edge */
-  color: $neutral-shade-9 !important;
+  color: $neutral-shade-5 !important;
 }
 
 .custom-control {
@@ -243,7 +243,7 @@ input[type=number]::-webkit-outer-spin-button {
     &.over {
       background-color: transparent !important;
       .content {
-        background: $neutral-shade-9 !important;
+        background: $neutral-shade-5 !important;
       }
     }
     .content {

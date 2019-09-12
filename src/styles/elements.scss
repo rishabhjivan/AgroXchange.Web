@@ -64,7 +64,7 @@ h6 {
 a {
   color: $neutral-shade-5;
   font-size: 1rem;
-  &:hover, &:active {
+  &:hover, &:focus, &:active {
     color: $neutral-shade-2;
   }
   &.disabled {
