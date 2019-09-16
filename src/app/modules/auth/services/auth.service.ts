@@ -22,20 +22,15 @@ export class AuthService {
   }
 
   public async signIn(login: Login): Promise<any> {
-    const url = `${Config.API_ENDPOINT}Auth/Token/`;
+    const url = `${Config.API_ENDPOINT}users/authenticate`;
     var res = await new Promise((resolve, reject) => {
       let response = this.http.post<AuthToken>(url, login).shareReplay();
       response.subscribe(
         res => {
           localStorage.setItem("AuthToken", res.token);
-          const userUrl = `${Config.API_ENDPOINT}User/`;
-          this.http.get<User>(userUrl).shareReplay().subscribe(
-            userResp => {
-              this.user = userResp;
-              localStorage.setItem("AuthUser", JSON.stringify(this.user));
-              resolve(this.user);
-            }
-          );
+          this.user = res.user;
+          localStorage.setItem("AuthUser", JSON.stringify(this.user));
+          resolve(this.user);
         },
         err => {
           reject('You have entered the wrong username or password');

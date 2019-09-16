@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //API_ENDPOINT: 'https://staging-api.agroxchange.ng/'
-  API_ENDPOINT: 'https://agroxchangewebstaging.azurewebsites.net/'
+  //API_ENDPOINT: 'https://agroxchangewebstaging.azurewebsites.net/'
+  API_ENDPOINT: 'https://localhost:44399/'
 };
 
 /*
