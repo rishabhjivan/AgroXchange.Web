@@ -1,14 +1,21 @@
-<form>
-  <div class="buttons-container">
-    <button class="btn btn-primary btn-fill btn-icon-left"><i class="sprite-register farmer"></i>I'm a farmer</button>
-    <button class="btn btn-register-2 btn-fill btn-icon-left"><i class="sprite-register aggregator"></i>I'm an aggregator</button>
-    <button class="btn btn-register-3 btn-fill btn-icon-left"><i class="sprite-register wholesaler"></i>I'm a wholesaler/retailer</button>
-    <button class="btn btn-register-4 btn-fill btn-icon-left"><i class="sprite-register processor"></i>I'm a processor</button>
-    <button class="btn btn-register-5 btn-fill btn-icon-left"><i class="sprite-register offtaker"></i>I'm an offtaker</button>
-    <button class="btn btn-register-6 btn-fill btn-icon-left"><i class="sprite-register supplier"></i>I'm an input supplier</button>
+<form name="register" #register="ngForm">
+  <div class="buttons-container" *ngIf="!user.role">
+    <button *ngFor="let r of roleList; let i = index" class="btn {{r.btnClass}} btn-fill btn-icon-left" (click)="selectRole(r)"><i class="sprite-register {{r.sprite}}"></i>{{r.label}}</button>
+  </div>
+  <div *ngIf="user.role">
+    <h4>{{chosenRole.label}}</h4>
+    <input type="text" name="emailId" class="form-control" placeholder="Email ID" [(ngModel)]="user.emailId" required />
+    <input type="text" name="firstName" class="form-control" placeholder="First Name" [(ngModel)]="user.firstName" required />
+    <input type="text" name="lastName" class="form-control" placeholder="Last Name" [(ngModel)]="user.lastName" required />
+    <input type="password" name="password" class="form-control" placeholder="Password" [(ngModel)]="user.password" required />
   </div>
 
   <div class="links-container text-center">
     <a [routerLink]="['/auth/login']" title="Already have an Account? Login">Already have an Account? Login</a>
+  </div>
+
+  <div *ngIf="user.role" class="buttons-container text-center">
+    <button (click)="user.role=''" class="btn btn-primary">&lt; Back</button>
+    <button (click)="submit(register.form)" class="btn btn-primary">Register</button>
   </div>
 </form>

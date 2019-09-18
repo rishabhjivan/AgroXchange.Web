@@ -1,6 +1,6 @@
-<form>
-  <input type="text" name="emailId" class="form-control" placeholder="Username" [(ngModel)]="model.emailId" />
-  <input type="password" name="password" class="form-control" placeholder="Password" [(ngModel)]="model.password" />
+<form name="login" #login="ngForm">
+  <input type="text" name="emailId" class="form-control" placeholder="Username" [(ngModel)]="model.emailId" required />
+  <input type="password" name="password" class="form-control" placeholder="Password" [(ngModel)]="model.password" required />
 
   <div class="links-container text-center">
     <a [routerLink]="['/auth/register']" title="Register for an Account">Register for an Account</a>
@@ -8,5 +8,5 @@
     <a [routerLink]="['/auth/forgot']" title="Forgot password?">Forgot password?</a>
   </div>
 
-  <div class="buttons-container text-center"><button (click)="signIn()" class="btn btn-primary">Login</button></div>
+  <div class="buttons-container text-center"><button (click)="signIn(login.form)" class="btn btn-primary">Login</button></div>
 </form>

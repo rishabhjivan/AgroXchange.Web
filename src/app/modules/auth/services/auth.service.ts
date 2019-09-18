@@ -9,6 +9,7 @@ import { User } from './../../shared/models/api/user';
 import { Login } from './../../shared/models/view/login';
 import { Config } from './../../shared/services/config';
 import { AuthToken } from '../../shared/models/api/auth-token';
+import { Register } from '../../shared/models/view/register';
 
 @Injectable()
 export class AuthService {
@@ -33,7 +34,7 @@ export class AuthService {
           resolve(this.user);
         },
         err => {
-          reject('You have entered the wrong username or password');
+          reject(err.error.message);
         }
       );
     }) as any;
@@ -43,6 +44,22 @@ export class AuthService {
   signOut() {
     localStorage.removeItem("AuthUser");
     localStorage.removeItem("AuthToken");
+  }
+
+  public async registerUser(newUser: Register): Promise<any> {
+    const url = `${Config.API_ENDPOINT}users`;
+    var res = await new Promise((resolve, reject) => {
+      let response = this.http.post<AuthToken>(url, newUser).shareReplay();
+      response.subscribe(
+        res => {
+          resolve(res);
+        },
+        err => {
+          reject(err.error.message);
+        }
+      );
+    }) as any;
+    return res;
   }
 
   public collectFailedRequest(request): void {

@@ -20,7 +20,26 @@ export class AlertsComponent implements OnInit {
     'success': "Success"
   };
   @ViewChild('alertsModal', {static: true}) alertsModalDom: ElementRef;
-  constructor() { }
+  constructor(
+    private store: Store<any>,
+    private modalService: NgbModal,
+    private alertsService: AlertsService) {
+    this.message$ = alertsService.getAlert();
+    this.message$ = this.message$.subscribe(state => {
+      if (state.err && state.err.status === 401) {
+        //Unauthorized. Do Nothing.
+      } else {
+        this.alertMessage = state;
+        if (state && state.msg !== '') {
+          this.flashAlert();
+        }
+      }
+    });
+  }
+
+  flashAlert() {
+    this.modalService.open(this.alertsModalDom, {windowClass: 'alerts-modal', backdropClass: 'alerts-modal-backdrop'});
+  }
 
   ngOnInit() {
   }

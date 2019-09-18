@@ -21,7 +21,11 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  signIn() {
+  signIn(form) {
+    if (!form.valid) {
+      this.alertsService.dispatchError('All fields are required');
+      return;
+    }
     this.authService.signIn(this.model)
       .then(
         user => {
