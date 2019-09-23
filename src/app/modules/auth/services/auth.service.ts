@@ -87,4 +87,36 @@ export class AuthService {
     return res;
   }
 
+  public async forgotPassword(email: string): Promise<any> {
+    const url = `${Config.API_ENDPOINT}users/password/forgot`;
+    var res = await new Promise((resolve, reject) => {
+      let response = this.http.post<AuthToken>(url, { email: email }).shareReplay();
+      response.subscribe(
+        res => {
+          resolve(res);
+        },
+        err => {
+          reject(err.error.message);
+        }
+      );
+    }) as any;
+    return res;
+  }
+
+  public async resetPassword(email: string, key: string, password: string): Promise<any> {
+    const url = `${Config.API_ENDPOINT}users/password/reset`;
+    var res = await new Promise((resolve, reject) => {
+      let response = this.http.post<AuthToken>(url, { email: email, key: key, password: password }).shareReplay();
+      response.subscribe(
+        res => {
+          resolve(res);
+        },
+        err => {
+          reject(err.error.message);
+        }
+      );
+    }) as any;
+    return res;
+  }
+
 }

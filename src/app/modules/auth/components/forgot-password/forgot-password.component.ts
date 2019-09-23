@@ -14,13 +14,28 @@ export class ForgotPasswordComponent implements OnInit {
   
   public model: Login = new Login;
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router, private alertsService: AlertsService) { }
 
   ngOnInit() {
   }
 
-  submit() {
-    
+  submit(form) {
+    if (!form.valid) {
+      this.alertsService.dispatchError('Email id is required');
+      return;
+    }
+    this.authService.forgotPassword(this.model.emailId)
+      .then(
+        user => {
+          this.alertsService.dispatchAction({
+            msg: 'If your email id is correct and your account exists, you will receive an email with instructions to reset your password.',
+            type: 'success'
+          });
+        },
+        err => {
+          this.alertsService.dispatchError(err);
+        }
+      );
   }
 
 }

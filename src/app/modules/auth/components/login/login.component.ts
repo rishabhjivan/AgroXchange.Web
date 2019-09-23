@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
     this.authService.signIn(this.model)
       .then(
         user => {
+          this.model.password = "";
           this.router.navigate(['/']);
         },
         err => {
