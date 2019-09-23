@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ActivateComponent } from './components/activate/activate.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,9 @@ import { RegisterComponent } from './components/register/register.component';
     },{
       path: 'register',
       component: RegisterComponent
+    },{
+      path: 'activate',
+      component: ActivateComponent
     }])
   ],
   declarations: [],

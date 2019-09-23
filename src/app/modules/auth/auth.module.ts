@@ -11,11 +11,12 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
+import { ActivateComponent } from './components/activate/activate.component';
 
 
 
 @NgModule({
-  declarations: [LoginComponent, ForgotPasswordComponent, ResetPasswordComponent, RegisterComponent],
+  declarations: [LoginComponent, ForgotPasswordComponent, ResetPasswordComponent, RegisterComponent, ActivateComponent],
   imports: [
     CommonModule,
     FormsModule,

@@ -71,4 +71,20 @@ export class AuthService {
     // be called after the token is refreshed
   }
 
+  public async activateUser(email: string, key: string): Promise<any> {
+    const url = `${Config.API_ENDPOINT}users/activate`;
+    var res = await new Promise((resolve, reject) => {
+      let response = this.http.post<AuthToken>(url, { email: email, key: key }).shareReplay();
+      response.subscribe(
+        res => {
+          resolve(res);
+        },
+        err => {
+          reject(err.error.message);
+        }
+      );
+    }) as any;
+    return res;
+  }
+
 }
