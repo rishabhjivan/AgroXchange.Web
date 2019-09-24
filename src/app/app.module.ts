@@ -11,6 +11,7 @@ import { SharedModule } from './modules/shared/shared.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { AlertsModule } from './modules/alerts/alerts.module';
 import { alertsReducer } from './modules/alerts/reducer/alerts';
+import { mapToolsReducer } from './modules/shared/reducers/map-tools';
 import { AuthInterceptor } from './modules/auth/services/auth.interceptor';
 import { RequestInterceptor } from './modules/auth/services/request.interceptor';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
@@ -25,7 +26,10 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
     CommonModule,
     NgbModule,
     HttpClientModule,
-    StoreModule.forRoot(alertsReducer),
+    StoreModule.forRoot({
+      alertsReducer: alertsReducer, 
+      mapToolsReducer: mapToolsReducer 
+    }),
     SharedModule,
     AuthModule,
     AlertsModule,

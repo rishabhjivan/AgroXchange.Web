@@ -1,5 +1,28 @@
-<p>Login success!</p>
+<!--<p>Login success!</p>
 <p>Farms:</p>
 <ul>
   <li *ngFor="let f of farms; let i = index">ID: {{f.id}}, Name: {{f.name}}</li>
-</ul>
+</ul>-->
+<agm-map 
+  [zoom]="initialZoom"
+  [latitude]="ondoMarker.latitude" 
+  [longitude]="ondoMarker.longitude" 
+  (mapClick)="mapClicked($event)">
+  <agm-marker 
+    *ngFor="let m of mapMarkers; let i = index"
+    (markerClick)="mapMarkerClicked(m, i)"
+    [latitude]="m.latitude"
+    [longitude]="m.longitude"
+    [label]="m.label"
+    [markerDraggable]="m.draggable"
+    (dragEnd)="mapMarkerDragEnd(m, $event)">
+  </agm-marker>
+  <agm-circle *ngIf="mapToolState.bufferTool" 
+    [latitude]="ondoMarker.latitude" 
+    [longitude]="ondoMarker.longitude" 
+    [radius]="5000"
+    [fillColor]="'red'"
+    [circleDraggable]="true"
+    [editable]="true">
+  </agm-circle>
+</agm-map>

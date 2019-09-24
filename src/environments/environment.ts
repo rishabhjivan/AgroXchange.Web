@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   //API_ENDPOINT: 'https://agroxchangewebstaging.azurewebsites.net/'
-  API_ENDPOINT: 'https://localhost:44399/'
+  API_ENDPOINT: 'https://localhost:44399/',
+  Google_Maps_Key: 'AIzaSyDEkofY6DSoJNRJT2oOtGR1nT0UllFo43M'
 };
 
 /*
