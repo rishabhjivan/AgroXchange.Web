@@ -7,21 +7,19 @@ jobs:
     displayName: 'npm install'
     inputs:
       command: install
-      workingDir: src/angular7
   
   - task: Npm@1
     displayName: 'Build Angular'
     inputs:
       command: custom
       customCommand: run build -- --prod
-      workingDir: src/angular7
   
   - task: PublishPipelineArtifact@0
     inputs:
       artifactName: 'angular'
-      targetPath: 'src/angular7/dist'
+      targetPath: 'dist'
   
   - task: PublishBuildArtifacts@1
     inputs:
-      PathtoPublish: 'src/angular7/dist'
+      PathtoPublish: 'dist'
       ArtifactName: angular2
