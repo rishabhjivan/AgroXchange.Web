@@ -6,16 +6,17 @@ import { map } from 'rxjs/operators';
 import 'rxjs/add/operator/shareReplay';
 import { Farm } from '../../shared/models/api/farm';
 import { Config } from '../../shared/services/config';
+import { UtilsService } from '../../shared/services/utils.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FarmsService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private utilsService: UtilsService) { }
 
-  getFarms(): Observable<Farm[]> {
+  getFarms(paramsObj: any): Observable<Farm[]> {
     const url = `${Config.API_ENDPOINT}farms`;
-    return this.http.get<Farm[]>(url);
+    return this.http.get<Farm[]>(url, {params: this.utilsService.toHttpParams(paramsObj)});
   }
 }

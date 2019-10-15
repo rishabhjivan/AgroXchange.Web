@@ -1,28 +1,40 @@
-<!--<p>Login success!</p>
-<p>Farms:</p>
-<ul>
-  <li *ngFor="let f of farms; let i = index">ID: {{f.id}}, Name: {{f.name}}</li>
-</ul>-->
 <agm-map 
   [zoom]="initialZoom"
   [latitude]="ondoMarker.latitude" 
   [longitude]="ondoMarker.longitude" 
-  (mapClick)="mapClicked($event)">
-  <agm-marker 
-    *ngFor="let m of mapMarkers; let i = index"
-    (markerClick)="mapMarkerClicked(m, i)"
-    [latitude]="m.latitude"
-    [longitude]="m.longitude"
-    [label]="m.label"
-    [markerDraggable]="m.draggable"
-    (dragEnd)="mapMarkerDragEnd(m, $event)">
-  </agm-marker>
+  [mapTypeId]="mapType"
+  (mapClick)="mapClicked($event)"
+  (boundsChange)="boundsChanged($event)">
+  <ng-container *ngIf="!mapToolState.bufferTool">
+    <agm-marker 
+      *ngFor="let m of mapMarkers; let i = index"
+      (markerClick)="mapMarkerClicked(m, i)"
+      [latitude]="m.latitude"
+      [longitude]="m.longitude"
+      [label]="m.label"
+      [markerDraggable]="m.draggable"
+      (dragEnd)="mapMarkerDragEnd(m, $event)">
+    </agm-marker>
+  </ng-container>
+  <ng-container *ngIf="mapToolState.bufferTool">
+    <agm-marker 
+      *ngFor="let m of bufferMarkers; let i = index"
+      (markerClick)="mapMarkerClicked(m, i)"
+      [latitude]="m.latitude"
+      [longitude]="m.longitude"
+      [label]="m.label"
+      [markerDraggable]="m.draggable"
+      (dragEnd)="mapMarkerDragEnd(m, $event)">
+    </agm-marker>
+  </ng-container>
   <agm-circle *ngIf="mapToolState.bufferTool" 
-    [latitude]="ondoMarker.latitude" 
-    [longitude]="ondoMarker.longitude" 
-    [radius]="5000"
+    [latitude]="mapBuffer.latitude" 
+    [longitude]="mapBuffer.longitude" 
+    [radius]="mapBuffer.radius"
     [fillColor]="'red'"
     [circleDraggable]="true"
-    [editable]="true">
+    [editable]="true"
+    (centerChange)="bufferCenterChanged($event)"
+    (radiusChange)="bufferRadiusChanged($event)">
   </agm-circle>
 </agm-map>

@@ -12,6 +12,7 @@ import { SafePipe } from './pipes/safe/safe.pipe';
 import { SafeHtmlPipe } from './pipes/safe-html/safe-html.pipe';
 import { AuthModule } from '../auth/auth.module';
 import { mapToolsReducer } from './reducers/map-tools';
+import { UtilsService } from './services/utils.service';
 
 
 
@@ -26,6 +27,6 @@ import { mapToolsReducer } from './reducers/map-tools';
     AuthModule
   ],
   exports: [HeaderComponent, FooterComponent, MenuComponent, SafePipe, SafeHtmlPipe],
-  providers: []
+  providers: [UtilsService]
 })
 export class SharedModule { }
