@@ -7,6 +7,7 @@ import { FarmsService } from '../../services/farms.service';
 import { Farm } from 'src/app/modules/shared/models/api/farm';
 import { MapMarker } from 'src/app/modules/shared/models/view/map-marker';
 import { FilterBuffer } from 'src/app/modules/shared/models/view/filter-buffer';
+import { FilterRect } from 'src/app/modules/shared/models/view/filter-rect';
 
 @Component({
   selector: 'app-main',
@@ -21,7 +22,7 @@ export class MainComponent implements OnInit {
   public mapType: string = 'roadmap'; //"roadmap" | "hybrid" | "satellite" | "terrain"
   private mapBounds: any;
   public mapMarkers: MapMarker[];
-  public bufferMarkers: MapMarker[];
+  public filteredMarkers: MapMarker[];
   public farms: Farm[];
   public farmIds: string[];
   public ondoMarker: MapMarker = {
@@ -30,38 +31,49 @@ export class MainComponent implements OnInit {
     draggable: false,
     label: 'Ondo'
   };
-  public mapBuffer: FilterBuffer = {
-    latitude: 7.0983926284126655,
-    longitude: 4.835423576874064,
-    radius: 10000
-  };
+  public mapBuffer: FilterBuffer = new FilterBuffer();
+  public mapRectangle: FilterRect = new FilterRect();
 
   constructor(private farmsService: FarmsService, private store: Store<any>, private mapToolsService: MapToolsService) {
     this.mapTools$ = mapToolsService.getMapTools();
     this.mapTools$ = this.mapTools$.subscribe(state => {
+      if (this.mapToolState && (this.mapToolState.bufferTool != state.bufferTool ||
+        this.mapToolState.drawToSelect != state.drawToSelect)) {
+        this.filteredMarkers = [];
+      }
       this.mapToolState = state;
-      if (state.bufferTool) this.filterByBuffer();
+      if (state.bufferTool && this.mapBuffer.drawn) this.filterByBuffer();
+      if (state.drawToSelect && this.mapRectangle.nwDrawn && this.mapRectangle.seDrawn) this.filterByRect();
     });
   }
 
   ngOnInit() {
     this.mapMarkers = [];
-    this.bufferMarkers = [];
+    this.filteredMarkers = [];
     this.farms = [];
     this.farmIds = [];
   }
 
   mapClicked($event: any) {
-    /*this.mapMarkers.push({
-      latitude: $event.coords.lat,
-      longitude: $event.coords.lng,
-      draggable: true,
-      label: ''
-    });*/
-    console.log({
-      latitude: $event.coords.lat,
-      longitude: $event.coords.lng
-    });
+    if (this.mapToolState.bufferTool && !this.mapBuffer.drawn) {
+      this.mapBuffer.radius = 10000;
+      this.mapBuffer.latitude = $event.coords.lat;
+      this.mapBuffer.longitude = $event.coords.lng;
+      this.mapBuffer.drawn = true;
+      this.filterByBuffer();
+    } else if (this.mapToolState.drawToSelect) {
+      if (!this.mapRectangle.nwDrawn) {
+        this.mapRectangle.north = $event.coords.lat;
+        this.mapRectangle.west = $event.coords.lng;
+        this.mapRectangle.south = $event.coords.lat;
+        this.mapRectangle.east = $event.coords.lng;
+        this.mapRectangle.nwDrawn = true;
+      } else if (!this.mapRectangle.seDrawn) {
+        this.mapRectangle.south = $event.coords.lat;
+        this.mapRectangle.east = $event.coords.lng;
+        this.mapRectangle.seDrawn = true;
+      }
+    }
   }
 
   boundsChanged($event: any) {
@@ -108,6 +120,22 @@ export class MainComponent implements OnInit {
     this.filterByBuffer();
   }
 
+  pushFarmsToFilter(farms) {
+    this.filteredMarkers = [];
+    _.each(farms, (farm) => {
+      if (this.farmIds.indexOf(farm.farmId) < 0) {
+        this.farmIds.push(farm.farmId);
+        this.farms.push(farm);
+      }
+      this.filteredMarkers.push({
+        latitude: farm.latitude,
+        longitude: farm.longitude,
+        draggable: false,
+        label: ''
+      });
+    });
+  }
+
   filterByBuffer() {
     let radKm = this.mapBuffer.radius / 1000;
     this.farmsService.getFarms({
@@ -117,19 +145,29 @@ export class MainComponent implements OnInit {
       rd1: radKm
     })
       .subscribe(farms => {
-        this.bufferMarkers = [];
-        _.each(farms, (farm) => {
-          if (this.farmIds.indexOf(farm.farmId) < 0) {
-            this.farmIds.push(farm.farmId);
-            this.farms.push(farm);
-          }
-          this.bufferMarkers.push({
-            latitude: farm.latitude,
-            longitude: farm.longitude,
-            draggable: false,
-            label: ''
-          });
-        });
+        this.pushFarmsToFilter(farms);
+      });
+  }
+
+  rectBoundsChanged($event: any) {
+    console.log($event);
+    this.mapRectangle.north = $event.north;
+    this.mapRectangle.west = $event.west;
+    this.mapRectangle.south = $event.south;
+    this.mapRectangle.east = $event.east;
+    this.filterByRect();
+  }
+
+  filterByRect() {
+    this.farmsService.getFarms({
+      t: 'rect',
+      lt1: this.mapRectangle.south,
+      lt2: this.mapRectangle.north,
+      ln1: this.mapRectangle.west,
+      ln2: this.mapRectangle.east
+    })
+      .subscribe(farms => {
+        this.pushFarmsToFilter(farms);
       });
   }
 

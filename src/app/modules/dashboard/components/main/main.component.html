@@ -5,7 +5,7 @@
   [mapTypeId]="mapType"
   (mapClick)="mapClicked($event)"
   (boundsChange)="boundsChanged($event)">
-  <ng-container *ngIf="!mapToolState.bufferTool">
+  <ng-container *ngIf="!mapToolState.bufferTool && !mapToolState.drawToSelect">
     <agm-marker 
       *ngFor="let m of mapMarkers; let i = index"
       (markerClick)="mapMarkerClicked(m, i)"
@@ -16,9 +16,9 @@
       (dragEnd)="mapMarkerDragEnd(m, $event)">
     </agm-marker>
   </ng-container>
-  <ng-container *ngIf="mapToolState.bufferTool">
+  <ng-container *ngIf="mapToolState.bufferTool || mapToolState.drawToSelect">
     <agm-marker 
-      *ngFor="let m of bufferMarkers; let i = index"
+      *ngFor="let m of filteredMarkers; let i = index"
       (markerClick)="mapMarkerClicked(m, i)"
       [latitude]="m.latitude"
       [longitude]="m.longitude"
@@ -27,7 +27,7 @@
       (dragEnd)="mapMarkerDragEnd(m, $event)">
     </agm-marker>
   </ng-container>
-  <agm-circle *ngIf="mapToolState.bufferTool" 
+  <agm-circle *ngIf="mapToolState.bufferTool && mapBuffer.drawn" 
     [latitude]="mapBuffer.latitude" 
     [longitude]="mapBuffer.longitude" 
     [radius]="mapBuffer.radius"
@@ -37,4 +37,14 @@
     (centerChange)="bufferCenterChanged($event)"
     (radiusChange)="bufferRadiusChanged($event)">
   </agm-circle>
+  <agm-rectangle *ngIf="mapToolState.drawToSelect && mapRectangle.nwDrawn"
+    [north]="mapRectangle.north"
+    [east]="mapRectangle.east"
+    [south]="mapRectangle.south"
+    [west]="mapRectangle.west"
+    [fillColor]="'red'"
+    [rectangleDraggable]="true"
+    [editable]="true"
+    (boundsChange)="rectBoundsChanged($event)">
+  </agm-rectangle>
 </agm-map>
